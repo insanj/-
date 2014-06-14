@@ -44,7 +44,7 @@
 	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(createAndPlaceStickyViewRandomly) name:@"🎉" object:nil];
 	
-	[self performSelector:@selector(regenerateColors) withObject:nil afterDelay:floorf(((CGFloat)arc4random() / 0x100000000) * 10.0)];
+	[self performSelector:@selector(regenerateColors) withObject:nil afterDelay:floorf(((CGFloat)arc4random() / 0x100000000) * 30.0)];
 	[self performSelector:@selector(regenerateSizes) withObject:nil afterDelay:floorf(((CGFloat)arc4random() / 0x100000000) * 10.0)];
 
 	NSInteger stickyViewsToCreate = [self savedStickyViewAmount];
@@ -118,7 +118,7 @@
 	[UIView animateWithDuration:0.25 animations:^(void) {
 		self.view.backgroundColor = lastView.backgroundColor;
 	} completion:^(BOOL finished){
-		[self performSelector:@selector(regenerateColors) withObject:nil afterDelay:floorf(((CGFloat)arc4random() / 0x100000000) * 10.0)];
+		[self performSelector:@selector(regenerateColors) withObject:nil afterDelay:floorf(((CGFloat)arc4random() / 0x100000000) * 30.0)];
 	}];
 }
 
