@@ -61,7 +61,15 @@ CGPoint currentTouchLocation, lastTouchLocation;
 
 	[UIView animateWithDuration:1.0 delay:0.0 usingSpringWithDamping:0.1 initialSpringVelocity:fmax(touchDelta.x, touchDelta.y) options:UIViewAnimationOptionCurveEaseOut animations:^(void){
 		self.center = CGPointMake(self.center.x - touchDelta.x, self.center.y - touchDelta.y);
-	} completion:nil];
+	} completion:^(BOOL finished) {
+		if (self.center.x > self.superview.frame.size.width || self.center.x < self.superview.frame.origin.x || self.center.y > self.superview.frame.size.height || self.center.y < self.superview.frame.origin.y) {
+			[UIView animateWithDuration:0.5 animations:^(void) {
+				self.alpha = 0.0;
+			} completion:^(BOOL finished) {
+				[self removeFromSuperview];
+			}];
+		}
+	}];
 }
 
 @end
